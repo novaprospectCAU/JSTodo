@@ -72,11 +72,7 @@ checkAll.addEventListener("click", () => {
       checkAll.classList.add("check-all--on");
       checkAll.classList.remove("check-all--off");
       if (!allButton.classList.contains("control-button--unclicked")) {
-        for (
-          let item = todoList.firstChild;
-          item !== null;
-          item = item.nextSibling
-        ) {
+        for (const item of todoList.childNodes) {
           makeStrikeThrough(item, { isChecked: true });
         }
       } else if (
