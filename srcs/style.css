@@ -1,0 +1,234 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin: 0;
+  padding: 0;
+}
+
+.title {
+  text-align: center;
+
+  margin: 32px 0;
+
+  color: #b83f45;
+  font-family: "Helvetica Neue", Courier, monospace;
+  font-size: 80px;
+  font-weight: 200;
+}
+
+.main {
+  width: 550px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+
+.todo {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.check-all {
+  padding: 24px;
+
+  font-size: 16px;
+  border-color: rgb(0, 0, 0, 0.003);
+  transform: rotate(90deg);
+  background-color: rgb(0, 0, 0, 0.003);
+}
+
+/* 클릭으로 토글할 수도 있지만 
+  모두 체크 혹은 해제 시에도 상태가 변하므로 
+  unclicked,clicked 대신 off,on사용 */
+.check-all--off {
+  color: #c0c0c0;
+}
+
+.check-all--on {
+  color: #101010;
+}
+
+.check-all--initial {
+  color: rgb(0, 0, 0, 0.003);
+}
+
+.todo-input {
+  box-sizing: border-box;
+  border: none;
+  padding: 16px 16px 16px 16px;
+
+  width: 100%;
+
+  color: #111;
+  font-family: "Helvetica Neue", Courier, monospace;
+  font-size: 24px;
+  font-weight: 200;
+  background-color: rgb(0, 0, 0, 0.003);
+  box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);
+}
+
+.todo-input::placeholder {
+  font-weight: 400;
+  font-style: italic;
+  color: rgb(0, 0, 0, 0.4);
+}
+
+.todo-input:focus {
+  outline: none;
+}
+
+.todo-input--clicked {
+  box-shadow: 0 0 2px 2px #cf7d7d;
+}
+
+.todo-list {
+  list-style-type: none;
+
+  margin: 0;
+  padding: 0;
+}
+
+.todo-list__item {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+
+  /* border-top: 1px solid #111; */
+  padding: 16px;
+
+  box-shadow: 0 0 0.5px 0 #101010;
+
+  color: #111;
+  font-family: "Helvetica Neue", Courier, monospace;
+  font-size: 24px;
+  font-weight: 100;
+}
+
+.todo-list__item:hover {
+  background-color: #f0f0f0;
+}
+
+.todo-list__item-left {
+  display: flex;
+  gap: 16px;
+}
+
+.todo-list__item-check-button {
+  display: block;
+  height: 32px;
+  width: 32px;
+  min-width: 32px;
+  border-radius: 50%;
+  border: 1px solid #484848;
+
+  /* border: none; */
+  background-color: transparent;
+}
+
+.todo-list__item-checked {
+  text-decoration: line-through;
+  color: #a0a0a0;
+  transition: color 0.4s;
+}
+
+.todo-list__delete-button {
+  border: none;
+  flex-basis: 1;
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  color: #fff;
+  font-size: 24px;
+  background-color: rgb(0, 0, 0, 0.003);
+}
+
+.todo-list__delete-button:hover {
+  color: #bbb;
+}
+
+.todo-list__menu {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 8px;
+}
+
+.menu__count {
+  color: #484848;
+  font-family: "Helvetica Neue", Courier, monospace;
+  font-weight: 100;
+}
+
+.todo-list__menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todo-list__menu--hiding {
+  display: none;
+}
+
+.control-all,
+.control-active,
+.control-completed {
+  padding: 4px;
+  border-color: rgb(0, 0, 0, 0.003);
+
+  border-color: #b83f45;
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 1px;
+
+  color: #484848;
+  font-weight: 100;
+  font-family: "Helvetica Neue", Courier, monospace;
+  font-size: 16px;
+  background-color: rgb(0, 0, 0, 0.003);
+}
+
+.control-button--unclicked {
+  border-color: rgb(0, 0, 0, 0.003);
+  box-shadow: none;
+}
+
+.control-all:hover,
+.control-active:hover,
+.control-completed:hover {
+  border-color: #b83f45;
+  border-radius: 10%;
+}
+
+.menu__select--hiding {
+  display: none;
+}
+
+.menu-clear {
+  border: none;
+
+  color: #484848;
+  font-family: "Helvetica Neue", Courier, monospace;
+  font-size: 16px;
+  font-weight: 200;
+
+  background-color: rgb(0, 0, 0, 0.003);
+}
+
+.menu-clear:hover {
+  text-decoration: underline;
+}
+
+.menu-clear--hiding {
+  color: rgb(0, 0, 0, 0.003);
+  text-decoration: none;
+}
+
+.footer {
+  text-align: center;
+
+  margin-top: 65px;
+
+  color: #4d4d4d;
+}

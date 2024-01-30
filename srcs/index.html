@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./style.css" rel="stylesheet" />
+    <script src="./main.js" type="module"></script>
+    <title>TODO</title>
+  </head>
+  <body>
+    <h1 class="title">todos</h1>
+    <div class="main">
+      <div class="todo">
+        <button class="check-all check-all--initial">❯</button>
+        <input
+          class="todo-input"
+          type="text"
+          placeholder="What needs to be done?"
+          autofocus
+        />
+      </div>
+      <ul class="todo-list"></ul>
+      <div class="todo-list__menu todo-list__menu--hiding">
+        <div class="menu__count"></div>
+        <div class="menu__control">
+          <button class="control-all">All</button>
+          <button class="control-active control-button--unclicked">
+            Active
+          </button>
+          <button class="control-completed control-button--unclicked">
+            Completed
+          </button>
+        </div>
+        <button class="menu-clear">Clear completed</button>
+      </div>
+    </div>
+    <footer class="footer">
+      Double-click to edit a todo<br />Created by the Byeonggu Team<br />Based
+      on TodoMVC
+    </footer>
+  </body>
+</html>
