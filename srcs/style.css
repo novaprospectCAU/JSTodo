@@ -29,6 +29,10 @@ body {
   align-items: stretch;
 }
 
+.todo:has(.todo-input:focus) {
+  outline: solid 2px #b83f45;
+}
+
 .check-all {
   padding: 24px;
 
@@ -76,10 +80,6 @@ body {
 
 .todo-input:focus {
   outline: none;
-}
-
-.todo-input--clicked {
-  box-shadow: 0 0 2px 2px #cf7d7d;
 }
 
 .todo-list {

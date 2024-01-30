@@ -111,14 +111,3 @@ clearButton.addEventListener("click", () => {
   toolbarUpdate();
   checkAllToggle();
 });
-
-//todo입력창 클릭시 효과를 부여합니다.
-window.addEventListener("click", (e) => {
-  const todoDiv = document.querySelector(".todo");
-  const todoInput = todoDiv.querySelector(".todo-input");
-  if (todoInput.contains(e.target)) {
-    todoDiv.classList.add("todo-input--clicked");
-  } else {
-    todoDiv.classList?.remove("todo-input--clicked");
-  }
-});
