@@ -1,5 +1,5 @@
 import { createListItem, todoItems } from "./main.js";
-import { counterUpdate } from "./utils.js";
+import { counterUpdate, deleteAllList } from "./utils.js";
 import { checkClearButton } from "./control.js";
 
 const allButton = document.querySelector(".control-all");
@@ -78,9 +78,7 @@ checkAll.addEventListener("click", () => {
       } else if (
         !activeButton.classList.contains("control-button--unclicked")
       ) {
-        while (todoList.lastChild) {
-          todoList.lastChild.remove();
-        }
+        deleteAllList();
       } else {
         for (const item of todoItems) {
           const list = createListItem(item.id, item.text);
@@ -108,9 +106,7 @@ checkAll.addEventListener("click", () => {
           todoList.append(list);
         }
       } else {
-        while (todoList.lastChild) {
-          todoList.lastChild.remove();
-        }
+        deleteAllList();
       }
     }
     counterUpdate();

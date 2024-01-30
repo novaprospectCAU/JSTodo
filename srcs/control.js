@@ -1,6 +1,6 @@
 import { checkAllToggle, makeStrikeThrough } from "./check.js";
 import { todoItems, createListItem } from "./main.js";
-import { counterUpdate } from "./utils.js";
+import { counterUpdate, deleteAllList } from "./utils.js";
 
 const allButton = document.querySelector(".control-all");
 const activeButton = document.querySelector(".control-active");
@@ -35,11 +35,7 @@ allButton.addEventListener("click", () => {
   completedButton.classList.add("control-button--unclicked");
 
   const ulList = document.querySelector(".todo-list");
-  for (let item = ulList.firstChild; item !== null; ) {
-    const temp = item.nextSibling;
-    item.remove();
-    item = temp;
-  }
+  deleteAllList();
 
   for (let newItem of todoItems) {
     const listItem = createListItem(newItem.id, newItem.text);
@@ -67,11 +63,7 @@ activeButton.addEventListener("click", () => {
   completedButton.classList.add("control-button--unclicked");
 
   const ulList = document.querySelector(".todo-list");
-  for (let item = ulList.firstChild; item !== null; ) {
-    const temp = item.nextSibling;
-    item.remove();
-    item = temp;
-  }
+  deleteAllList();
   for (let newItem of todoItems) {
     if (!newItem.isChecked) {
       const listItem = createListItem(newItem.id, newItem.text);
@@ -97,11 +89,7 @@ completedButton.addEventListener("click", () => {
   completedButton.classList.remove("control-button--unclicked");
 
   const ulList = document.querySelector(".todo-list");
-  for (let item = ulList.firstChild; item !== null; ) {
-    const temp = item.nextSibling;
-    item.remove();
-    item = temp;
-  }
+  deleteAllList();
   for (let newItem of todoItems) {
     if (newItem.isChecked) {
       const listItem = createListItem(newItem.id, newItem.text);

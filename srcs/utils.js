@@ -25,13 +25,11 @@ export function menuFilter(item) {
 
 /**
  * ul태그의 모든 li들을 삭제합니다.
- * @param {*} listItem
  */
-export function deleteAllList(listItem) {
-  for (let item = listItem.firstChild; item !== null; ) {
-    const temp = item.nextSibling;
-    item.remove();
-    item = temp;
+export function deleteAllList() {
+  const listItem = document.querySelector(".todo-list");
+  while (listItem.lastChild) {
+    listItem.lastChild.remove();
   }
 }
 
