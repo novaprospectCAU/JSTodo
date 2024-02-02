@@ -1,0 +1,57 @@
+.todo-list__item {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+
+  /* border-top: 1px solid #111; */
+  padding: 16px;
+
+  box-shadow: 0 0 0.5px 0 #101010;
+
+  color: #111;
+  font-family: "Helvetica Neue", Courier, monospace;
+  font-size: 24px;
+  font-weight: 100;
+}
+
+.todo-list__item:hover {
+  background-color: #f0f0f0;
+}
+
+.todo-list__item-left {
+  display: flex;
+  gap: 16px;
+}
+
+.todo-list__item-check-button {
+  display: block;
+  height: 32px;
+  width: 32px;
+  min-width: 32px;
+  border-radius: 50%;
+  border: 1px solid #484848;
+
+  /* border: none; */
+  background-color: transparent;
+}
+
+.todo-list__item-checked {
+  text-decoration: line-through;
+  color: #a0a0a0;
+  transition: color 0.4s;
+}
+
+.todo-list__delete-button {
+  border: none;
+  flex-basis: 1;
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  color: #fff;
+  font-size: 24px;
+  background-color: rgb(0, 0, 0, 0.003);
+}
+
+.todo-list__delete-button:hover {
+  color: #bbb;
+}

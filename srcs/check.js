@@ -59,7 +59,14 @@ export function makeStrikeThrough(listItem, item) {
 checkAll.addEventListener("click", () => {
   const todoList = document.querySelector(".todo-list");
 
-  if (!checkAll.classList.contains("check-all--initial")) {
+  let isAllItemsChecked = true;
+  for (const item of todoItems) {
+    if (!item.isChecked) {
+      isAllItemsChecked = false;
+    }
+  }
+
+  if (!isAllItemsChecked) {
     let isChanged = false;
     for (let item of todoItems) {
       if (item.isChecked === false) {

@@ -1,0 +1,59 @@
+.menu__count {
+  color: #484848;
+  font-family: "Helvetica Neue", Courier, monospace;
+  font-weight: 100;
+}
+
+.control-all,
+.control-active,
+.control-completed {
+  padding: 4px;
+  border-color: rgb(0, 0, 0, 0.003);
+
+  border-color: #b83f45;
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 1px;
+
+  color: #484848;
+  font-weight: 100;
+  font-family: "Helvetica Neue", Courier, monospace;
+  font-size: 16px;
+  background-color: rgb(0, 0, 0, 0.003);
+}
+
+.control-button--unclicked {
+  border-color: rgb(0, 0, 0, 0.003);
+  box-shadow: none;
+}
+
+.control-all:hover,
+.control-active:hover,
+.control-completed:hover {
+  border-color: #b83f45;
+  border-radius: 10%;
+}
+
+.menu__select--hiding {
+  display: none;
+}
+
+.menu-clear {
+  border: none;
+
+  color: #484848;
+  font-family: "Helvetica Neue", Courier, monospace;
+  font-size: 16px;
+  font-weight: 200;
+
+  background-color: rgb(0, 0, 0, 0.003);
+}
+
+.menu-clear:hover {
+  text-decoration: underline;
+}
+
+.menu-clear--hiding {
+  color: rgb(0, 0, 0, 0.003);
+  text-decoration: none;
+}
