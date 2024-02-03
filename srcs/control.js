@@ -5,6 +5,8 @@ import { counterUpdate, deleteAllList } from "./utils.js";
 const allButton = document.querySelector(".control-all");
 const activeButton = document.querySelector(".control-active");
 const completedButton = document.querySelector(".control-completed");
+
+let controlOption = 0;
 /**
  * toolbar의 상태를 업데이트하거나 가시 여부를 설정합니다.
  */
