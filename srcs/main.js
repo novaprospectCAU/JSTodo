@@ -97,15 +97,8 @@ clearButton.addEventListener("click", () => {
   const todoList = document.querySelector("ul");
   for (let item = todoList.firstChild; item !== null; ) {
     const itemTextStyle = item?.querySelector(".todo-list__item-checked");
-    if (itemTextStyle !== null) {
-      const temp = item.nextSibling;
-      item.remove();
-      item = temp;
-    } else {
-      item = item.nextSibling;
-    }
+    deleteAllList();
     checkClearButton();
-    counterUpdate();
   }
   todoItems = todoItems.filter((item) => item.isChecked === false);
   toolbarUpdate();
