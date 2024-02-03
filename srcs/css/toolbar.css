@@ -54,6 +54,5 @@
 }
 
 .menu-clear--hiding {
-  color: rgb(0, 0, 0, 0.003);
-  text-decoration: none;
+  visibility: hidden;
 }

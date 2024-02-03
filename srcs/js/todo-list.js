@@ -1,10 +1,10 @@
 import { todoItems } from "../main";
+import { controlOption } from "./toolbar.js";
 
-let controlOption = 0;
-let clearOption = 0;
-let numberOfItems = 0;
-let numberOfChecks = 0;
-let currentOption = 0;
+// let clearOption = 0;
+// let numberOfItems = 0;
+// let numberOfChecks = 0;
+// let currentOption = 0;
 // let item = {id: id, isChecked: false, text: text};
 
 /**
@@ -21,11 +21,12 @@ export function updateList() {
  */
 function toggleList() {
   const todoList = document.querySelector(".todo-list");
+  const MENU_HIDE = "menu__select--hiding";
 
-  if (numberOfItems === 0) {
-    todoList.classList.add("menu__select--hiding");
+  if (todoItems.length === 0) {
+    todoList.classList.add(MENU_HIDE);
   } else {
-    todoList.classList.remove("menu__select--hiding");
+    todoList.classList.remove(MENU_HIDE);
   }
 }
 
@@ -59,9 +60,31 @@ function addAllList() {
   } else {
     for (let item of todoItems) {
       if (item.isChecked === true) {
-        makeList(item);
+        makeList(item, handleDeleteItem);
       }
     }
+  }
+}
+
+function handleDeleteItem(itemId, listItem) {
+  // 2
+  todoItems = todoItems.filter((item) => item.id !== itemId);
+  // 3
+  listItem.remove();
+}
+
+function handleCheckItem(item, listItem) {
+  //2
+  item.isChecked = !item.isChecked;
+  //3
+  const ITEM_CHECKED = "todo-list__item-checked";
+  const checkButton = listItem.querySelector("todo-list__item-check-button");
+  if (item.isChecked === true) {
+    listItem.classList.add(ITEM_CHECKED);
+    checkButton.textContent = "✔️";
+  } else {
+    listItem.classList.remove(ITEM_CHECKED);
+    checkButton.textContent = "";
   }
 }
 
@@ -89,10 +112,10 @@ function makeList(item) {
   newListText.textContent = item.text;
   if (item.isChecked === true) {
     newListText.classList.add("todo-list__item-checked");
-    newListCheckButton.textContent("✔️");
+    newListCheckButton.textContent = "✔️";
   } else {
     newListText.classList.remove("todo-list__item-checked");
-    newListCheckButton.textContent("");
+    newListCheckButton.textContent = "";
   }
 
   newListLeft.append(newListCheckButton);
@@ -103,12 +126,14 @@ function makeList(item) {
 
   // newListDeleteButton.addEventListener("click", () => {
   //   newList.remove();
-  // });
-  // newListCheckButton.addEventListener("click", () => {
-  //   if () {
 
-  //   }
-  // })
+  // });
+  newListDeleteButton.addEventListener("click", () => {
+    handleDeleteItem(item.id, newList);
+  });
+  newListCheckButton.addEventListener("click", () => {
+    handleCheckItem(item, newList);
+  });
 }
 
 /**
@@ -133,13 +158,18 @@ function makeNewList(id, text) {
   newListDeleteButton.classList.add("todo-list__delete-button");
 
   newListText.textContent = item.text;
-  if (item.isChecked === true) {
-    newListText.classList.add("todo-list__item-checked");
-    newListCheckButton.textContent("✔️");
-  } else {
-    newListText.classList.remove("todo-list__item-checked");
-    newListCheckButton.textContent("");
-  }
+  newListText.classList.remove("todo-list__item-checked");
+  newListCheckButton.textContent = "";
+
+  newListDeleteButton.addEventListener("click", () => {
+    handleDeleteItem(item.id, newList);
+  });
+  newListCheckButton.addEventListener("click", () => {
+    handleCheckItem(
+      todoItems.filter((item) => item.id === id),
+      newList
+    );
+  });
 }
 
 // const itemButton = listItem.querySelector(".todo-list__item-check-button");
