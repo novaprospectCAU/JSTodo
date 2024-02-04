@@ -28,6 +28,7 @@ export function newInput() {
       if (string !== "") {
         pushItem(highestId, string);
         makeNewListItem(highestId++, string);
+        inputSpace.value = "";
       }
     }
     updateToolBar();
