@@ -1,5 +1,6 @@
-import { todoItems } from "../main";
 import { controlOption } from "./toolbar.js";
+
+export let todoItems = [];
 
 // let clearOption = 0;
 // let numberOfItems = 0;
@@ -28,6 +29,14 @@ function toggleList() {
   } else {
     todoList.classList.remove(MENU_HIDE);
   }
+}
+
+/**
+ * 체크된 리스트를 지우는 함수
+ */
+export function deleteCheckedList() {
+  deleteAllList();
+  addAllList();
 }
 
 /**
@@ -78,12 +87,13 @@ function handleCheckItem(item, listItem) {
   item.isChecked = !item.isChecked;
   //3
   const ITEM_CHECKED = "todo-list__item-checked";
-  const checkButton = listItem.querySelector("todo-list__item-check-button");
+  const checkButton = listItem.querySelector(".todo-list__item-check-button");
+  const itemText = listItem.querySelector(".todo-list__item-text");
   if (item.isChecked === true) {
-    listItem.classList.add(ITEM_CHECKED);
+    itemText.classList.add(ITEM_CHECKED);
     checkButton.textContent = "✔️";
   } else {
-    listItem.classList.remove(ITEM_CHECKED);
+    itemText.classList.remove(ITEM_CHECKED);
     checkButton.textContent = "";
   }
 }
@@ -139,35 +149,39 @@ function makeList(item) {
 /**
  * 이벤트를 통해 리스트를 추가하는 함수
  */
-function makeNewList(id, text) {
+export function makeNewListItem(id, text) {
   const todoList = document.querySelector(".todo-list");
 
-  const newList = document.createElement("li");
-  newList.classList.add("todo-list__item");
+  const newListItem = document.createElement("li");
+  newListItem.classList.add("todo-list__item");
 
-  const newListLeft = document.createElement("div");
-  newListLeft.classList.add("todo-list__item-left");
+  const newListItemLeft = document.createElement("div");
+  newListItemLeft.classList.add("todo-list__item-left");
 
-  const newListCheckButton = document.createElement("button");
-  newListCheckButton.classList.add("todo-list__item-check-button");
+  const newListItemCheckButton = document.createElement("button");
+  newListItemCheckButton.classList.add("todo-list__item-check-button");
 
-  const newListText = document.createElement("div");
-  newListText.classList.add("todo-list__item-text");
+  const newListItemText = document.createElement("div");
+  newListItemText.classList.add("todo-list__item-text");
 
-  const newListDeleteButton = document.createElement("button");
-  newListDeleteButton.classList.add("todo-list__delete-button");
+  const newListItemDeleteButton = document.createElement("button");
+  newListItemDeleteButton.classList.add("todo-list__delete-button");
 
-  newListText.textContent = item.text;
-  newListText.classList.remove("todo-list__item-checked");
-  newListCheckButton.textContent = "";
+  newListItemText.textContent = text;
+  newListItemCheckButton.textContent = "";
+  newListItemLeft.append(newListItemCheckButton);
+  newListItemLeft.append(newListItemText);
+  newListItem.append(newListItemLeft);
+  newListItem.append(newListItemDeleteButton);
+  todoList.append(newListItem);
 
-  newListDeleteButton.addEventListener("click", () => {
-    handleDeleteItem(item.id, newList);
+  newListItemDeleteButton.addEventListener("click", () => {
+    handleDeleteItem(item.id, newListItem);
   });
-  newListCheckButton.addEventListener("click", () => {
+  newListItemCheckButton.addEventListener("click", () => {
     handleCheckItem(
       todoItems.filter((item) => item.id === id),
-      newList
+      newListItem
     );
   });
 }

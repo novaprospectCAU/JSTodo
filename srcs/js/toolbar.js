@@ -1,4 +1,5 @@
-import { todoItems } from "../main";
+import { todoItems } from "./todo-list.js";
+import { deleteAllCheck } from "./utils.js";
 
 export let controlOption = 0;
 export let clearOption = 0;
@@ -55,7 +56,9 @@ export function updateToolBar() {
 function updateCounter() {
   const counter = document.querySelector(".menu__count");
 
-  counter.textContent = `${numberOfChecks} items left`;
+  counter.textContent = `${
+    todoItems.filter((item) => item.isChecked === false).length
+  } items left`;
 }
 
 /**
@@ -92,4 +95,12 @@ function updateClear() {
   } else {
     clearButton.classList.remove(HIDE_CLEAR);
   }
+}
+
+function activateClearButton() {
+  const clearButton = document.querySelector(".menu-clear");
+  clearButton.addEventListener("click", () => {
+    deleteAllCheck();
+    deleteCheckedList();
+  });
 }

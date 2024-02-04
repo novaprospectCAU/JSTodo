@@ -1,5 +1,5 @@
-import { toolbarUpdate } from "../control.js";
-import { todoItems } from "../main";
+import { updateToolBar } from "./toolbar.js";
+import { makeNewListItem, todoItems } from "./todo-list.js";
 
 let highestId = 0;
 
@@ -7,10 +7,7 @@ let highestId = 0;
  * 입력받은 문자열이 저장 가능한 형태인지 확인하는 함수
  */
 function inputCheck(input) {
-  const string = input.value.trim();
-  if (string === null || string === "") {
-    return "";
-  } else return string;
+  return input.value.trim();
 }
 
 /**
@@ -30,10 +27,10 @@ export function newInput() {
       const string = inputCheck(inputSpace);
       if (string !== "") {
         pushItem(highestId, string);
-        makeNewList(highestId++, string);
+        makeNewListItem(highestId++, string);
       }
     }
-    toolbarUpdate();
+    updateToolBar();
   });
 }
 
@@ -103,3 +100,5 @@ export function checkButton() {
     }
   });
 }
+
+newInput();
