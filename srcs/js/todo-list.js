@@ -176,7 +176,7 @@ export function makeNewListItem(id, text) {
   todoList.prepend(newListItem);
 
   newListItemDeleteButton.addEventListener("click", () => {
-    handleDeleteItem(item.id, newListItem);
+    handleDeleteItem(id, newListItem);
   });
   newListItemCheckButton.addEventListener("click", () => {
     handleCheckItem(
