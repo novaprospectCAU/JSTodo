@@ -1,4 +1,4 @@
-import { todoItems } from "./todo-list.js";
+import { todoItems, updateList } from "./todo-list.js";
 import { deleteAllCheck } from "./utils.js";
 
 export let controlOption = 0;
@@ -36,18 +36,21 @@ export function clickOption() {
   allButton.addEventListener("click", () => {
     if (controlOption !== 0) {
       changeControlOption(0);
+      updateList();
       updateToolBar();
     }
   });
   activeButton.addEventListener("click", () => {
     if (controlOption !== 1) {
       changeControlOption(1);
+      updateList();
       updateToolBar();
     }
   });
   completedButton.addEventListener("click", () => {
     if (controlOption !== 2) {
       changeControlOption(2);
+      updateList();
       updateToolBar();
     }
   });
@@ -117,3 +120,5 @@ function activateClearButton() {
     deleteCheckedList();
   });
 }
+
+clickOption();
