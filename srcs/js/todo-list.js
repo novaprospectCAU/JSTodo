@@ -147,9 +147,13 @@ function makeList(item) {
   // });
   newListDeleteButton.addEventListener("click", () => {
     handleDeleteItem(item.id, newList);
+    updateList();
+    updateToolBar();
   });
   newListCheckButton.addEventListener("click", () => {
     handleCheckItem(item, newList);
+    updateList();
+    updateToolBar();
   });
 }
 
@@ -185,12 +189,16 @@ export function makeNewListItem(id, text) {
 
   newListItemDeleteButton.addEventListener("click", () => {
     handleDeleteItem(id, newListItem);
+    updateList();
+    updateToolBar();
   });
   newListItemCheckButton.addEventListener("click", () => {
     handleCheckItem(
       todoItems.filter((item) => item.id === id),
       newListItem
     );
+    updateList();
+    updateToolBar();
   });
 }
 

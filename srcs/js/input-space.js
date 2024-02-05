@@ -1,7 +1,9 @@
 import { updateToolBar } from "./toolbar.js";
 import { makeNewListItem, todoItems } from "./todo-list.js";
+import { updateAll } from "./utils.js";
 
 let highestId = 0;
+export let checkButtonStatus = "init";
 
 /**
  * 입력받은 문자열이 저장 가능한 형태인지 확인하는 함수
@@ -31,29 +33,41 @@ export function newInput() {
         inputSpace.value = "";
       }
     }
-    updateToolBar();
+    updateAll();
   });
 }
 
+/**
+ * 체크 버튼 업데이트하는 함수
+ */
+export function updateCheckButton() {
+  toggleCheckButton();
+  changeItemsViaCheckButton();
+  updateCheckButtonVisual();
+}
+
+/**
+ * checkButtonStatus 변수의 값을 결정하는 함수
+ */
 function toggleCheckButton() {
   if (todoItems.length === 0) {
-    return 0;
+    checkButtonStatus = "init";
   } else if (
     todoItems.filter((items) => items.isChecked === false).length > 0
   ) {
-    return "off";
+    checkButtonStatus = "off";
   } else {
-    return "on";
+    checkButtonStatus = "on";
   }
 }
 
 /**
  * 입력창의 체크 버튼의 누름에 따라 배열 내부를 조정하는 함수
  */
-function changeItemsViaCheckButton(status) {
-  if (status === 0) {
+function changeItemsViaCheckButton() {
+  if (checkButtonStatus === 0) {
     return;
-  } else if (status === "off") {
+  } else if (checkButtonStatus === "off") {
     for (let item of todoItems) {
       item.isChecked = false;
     }
@@ -67,17 +81,17 @@ function changeItemsViaCheckButton(status) {
 /**
  * 입력창의 체크 버튼의 모습을 결정하는 함수
  */
-function updateCheckButton(status) {
+function updateCheckButtonVisual() {
   const checkButton = document.querySelector(".check-all");
   const OFF = "check-all--off";
   const ON = "check-all--on";
   const INIT = "check-all--initial";
 
-  if (status === 0) {
+  if (checkButtonStatus === "init") {
     checkButton.classList.remove(OFF);
     checkButton.classList.remove(ON);
     checkButton.classList.add(INIT);
-  } else if (status === "off") {
+  } else if (checkButtonStatus === "off") {
     checkButton.classList.add(OFF);
     checkButton.classList.remove(ON);
     checkButton.classList.remove(INIT);
@@ -90,16 +104,16 @@ function updateCheckButton(status) {
 
 export function checkButton() {
   const checkButton = document.querySelector(".check-all");
-  let checkButtonStatus = toggleCheckButton();
+  toggleCheckButton();
   checkButton.addEventListener("click", () => {
-    checkButtonStatus = toggleCheckButton();
+    toggleCheckButton();
     if (checkButtonStatus === 0) {
     } else {
-      changeItemsViaCheckButton(checkButtonStatus);
-      updateCheckButton(checkButtonStatus);
-      updateToolBar();
+      activateClearButton();
     }
   });
 }
 
 newInput();
+checkButton();
+updateAll();
