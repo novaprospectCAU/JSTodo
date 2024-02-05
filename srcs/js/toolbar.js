@@ -58,6 +58,7 @@ export function clickOption() {
  */
 export function updateToolBar() {
   updateCounter();
+  checkUpdateToobar();
   updateOption();
   updateClear();
 }
@@ -81,7 +82,6 @@ function updateOption() {
   const optionActive = document.querySelector(".control-active");
   const optionCompleted = document.querySelector(".control-completed");
 
-  checkUpdateToobar();
   if (controlOption === 0) {
     optionAll.classList.remove("control-button--unclicked");
     optionActive.classList.add("control-button--unclicked");

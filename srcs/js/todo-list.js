@@ -1,4 +1,4 @@
-import { controlOption } from "./toolbar.js";
+import { controlOption, updateToolBar } from "./toolbar.js";
 
 export let todoItems = [];
 
@@ -80,6 +80,7 @@ function handleDeleteItem(itemId, listItem) {
   todoItems = todoItems.filter((item) => item.id !== itemId);
   // 3
   listItem.remove();
+  updateToolBar();
 }
 
 function handleCheckItem(item, listItem) {
