@@ -173,7 +173,7 @@ export function makeNewListItem(id, text) {
   newListItemLeft.append(newListItemText);
   newListItem.append(newListItemLeft);
   newListItem.append(newListItemDeleteButton);
-  todoList.append(newListItem);
+  todoList.prepend(newListItem);
 
   newListItemDeleteButton.addEventListener("click", () => {
     handleDeleteItem(item.id, newListItem);

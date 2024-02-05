@@ -14,7 +14,7 @@ function inputCheck(input) {
  * 입력받은 개체를 배열에 추가하는 함수
  */
 function pushItem(id, text) {
-  todoItems.push({ id: id, isChecked: false, text: text });
+  todoItems.unshift({ id: id, isChecked: false, text: text });
 }
 
 /**
