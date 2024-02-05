@@ -7,6 +7,18 @@ export let clearOption = 0;
 // export let numberOfChecks = 0;
 
 /**
+ * 툴바창을 보이게 하지 정하는 함수
+ */
+function checkUpdateToobar() {
+  const toolbar = document.querySelector(".todo-list__menu");
+  if (todoItems.length === 0) {
+    toolbar.classList.add("todo-list__menu--hiding");
+  } else {
+    toolbar.classList.remove("todo-list__menu--hiding");
+  }
+}
+
+/**
  * 현재 보기 창의 옵션 번호를 새로 지정하는 함수
  */
 function changeControlOption(buttonNumber) {
@@ -69,18 +81,19 @@ function updateOption() {
   const optionActive = document.querySelector(".control-active");
   const optionCompleted = document.querySelector(".control-completed");
 
+  checkUpdateToobar();
   if (controlOption === 0) {
-    optionAll.classList.remove("menu__select--hiding");
-    optionActive.classList.add("menu__select--hiding");
-    optionCompleted.classList.add("menu__select--hiding");
+    optionAll.classList.remove("control-button--unclicked");
+    optionActive.classList.add("control-button--unclicked");
+    optionCompleted.classList.add("control-button--unclicked");
   } else if (controlOption === 1) {
-    optionAll.classList.add("menu__select--hiding");
-    optionActive.classList.remove("menu__select--hiding");
-    optionCompleted.classList.add("menu__select--hiding");
+    optionAll.classList.add("control-button--unclicked");
+    optionActive.classList.remove("control-button--unclicked");
+    optionCompleted.classList.add("control-button--unclicked");
   } else {
-    optionAll.classList.add("menu__select--hiding");
-    optionActive.classList.add("menu__select--hiding");
-    optionCompleted.classList.remove("menu__select--hiding");
+    optionAll.classList.add("control-button--unclicked");
+    optionActive.classList.add("control-button--unclicked");
+    optionCompleted.classList.remove("control-button--unclicked");
   }
 }
 
