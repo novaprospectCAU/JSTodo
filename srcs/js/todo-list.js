@@ -75,6 +75,9 @@ function addAllList() {
   }
 }
 
+/**
+ * 삭제 버튼을 눌렀을 때 작동하는 함수
+ */
 function handleDeleteItem(itemId, listItem) {
   // 2
   todoItems = todoItems.filter((item) => item.id !== itemId);
@@ -83,6 +86,9 @@ function handleDeleteItem(itemId, listItem) {
   updateToolBar();
 }
 
+/**
+ * 체크 버튼을 눌렀을 때 작동하는 함수
+ */
 function handleCheckItem(item, listItem) {
   //2
   item.isChecked = !item.isChecked;
@@ -170,6 +176,7 @@ export function makeNewListItem(id, text) {
 
   newListItemText.textContent = text;
   newListItemCheckButton.textContent = "";
+  newListItemDeleteButton.textContent = "X";
   newListItemLeft.append(newListItemCheckButton);
   newListItemLeft.append(newListItemText);
   newListItem.append(newListItemLeft);
