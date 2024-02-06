@@ -1,4 +1,4 @@
-import { controlOption, updateToolBar } from "./toolbar.js";
+import { controlOption, updateToolbar } from "./toolbar.js";
 import { updateAll } from "./utils.js";
 
 export let todoItems = [];
@@ -35,7 +35,7 @@ function toggleList() {
 /**
  * 체크된 리스트를 지우는 함수
  */
-export function deleteCheckedList() {
+export function deleteCheckedListItems() {
   deleteAllList();
   addAllList();
 }
@@ -84,7 +84,7 @@ function handleDeleteItem(itemId, listItem) {
   todoItems = todoItems.filter((item) => item.id !== itemId);
   // 3
   listItem.remove();
-  updateToolBar();
+  updateToolbar();
 }
 
 /**
@@ -163,64 +163,3 @@ function makeList(item) {
     updateAll();
   });
 }
-
-/**
- * 이벤트를 통해 리스트를 추가하는 함수
- */
-// export function makeNewListItem(id, text) {
-//   const todoList = document.querySelector(".todo-list");
-
-//   const newListItem = document.createElement("li");
-//   newListItem.classList.add("todo-list__item");
-
-//   const newListItemLeft = document.createElement("div");
-//   newListItemLeft.classList.add("todo-list__item-left");
-
-//   const newListItemCheckButton = document.createElement("button");
-//   newListItemCheckButton.classList.add("todo-list__item-check-button");
-
-//   const newListItemText = document.createElement("div");
-//   newListItemText.classList.add("todo-list__item-text");
-
-//   const newListItemDeleteButton = document.createElement("button");
-//   newListItemDeleteButton.classList.add("todo-list__delete-button");
-
-//   newListItemText.textContent = text;
-//   newListItemCheckButton.textContent = "";
-//   newListItemDeleteButton.textContent = "X";
-//   newListItemLeft.append(newListItemCheckButton);
-//   newListItemLeft.append(newListItemText);
-//   newListItem.append(newListItemLeft);
-//   newListItem.append(newListItemDeleteButton);
-//   todoList.prepend(newListItem);
-
-//   newListItemDeleteButton.addEventListener("click", () => {
-//     handleDeleteItem(id, newListItem);
-//     updateList();
-//     updateToolBar();
-//   });
-//   newListItemCheckButton.addEventListener("click", () => {
-//     handleCheckItem(
-//       todoItems.filter((item) => item.id === id),
-//       newListItem
-//     );
-//     updateList();
-//     updateToolBar();
-//   });
-// }
-
-// const itemButton = listItem.querySelector(".todo-list__item-check-button");
-// itemButton.addEventListener("click", () => {
-//   const item = todoItems.find((item) => item.id === itemId);
-//   if (!item) {
-//     throw new Error(`No item with ID: ${itemId}`);
-//   }
-//   //수정사항 : 체크가 된 목록은 취소선이 그어지도록 변경했습니다.
-//   if (item.isChecked) {
-//     itemButton.textContent = "";
-//     itemTextE1.classList.remove("todo-list__item-checked");
-//   } else {
-//     itemButton.textContent = "✔️";
-//     itemTextE1.classList.add("todo-list__item-checked");
-//   }
-//   item.isChecked = !item.isChecked;

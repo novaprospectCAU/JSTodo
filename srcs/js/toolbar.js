@@ -1,5 +1,5 @@
-import { todoItems, updateList } from "./todo-list.js";
-import { deleteAllCheck, updateAll } from "./utils.js";
+import { deleteCheckedListItems, todoItems } from "./todo-list.js";
+import { deleteAllChecked, updateAll } from "./utils.js";
 
 export let controlOption = 0;
 export let clearOption = 0;
@@ -9,7 +9,7 @@ export let clearOption = 0;
 /**
  * 툴바창을 보이게 하지 정하는 함수
  */
-function checkUpdateToobar() {
+function toggleToobar() {
   const toolbar = document.querySelector(".todo-list__menu");
   if (todoItems.length === 0) {
     toolbar.classList.add("todo-list__menu--hiding");
@@ -56,8 +56,8 @@ export function clickOption() {
 /**
  * 툴바를 업데이트하는 메인 함수
  */
-export function updateToolBar() {
-  checkUpdateToobar();
+export function updateToolbar() {
+  toggleToobar();
   updateCounter();
   updateOption();
   updateClear();
@@ -113,8 +113,8 @@ function updateClear() {
 export function activateClearButton() {
   const clearButton = document.querySelector(".menu-clear");
   clearButton.addEventListener("click", () => {
-    deleteAllCheck();
-    deleteCheckedList();
+    deleteAllChecked();
+    deleteCheckedListItems();
   });
 }
 
