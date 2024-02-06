@@ -186,6 +186,9 @@ function makeListItem(item) {
   });
 }
 
+/**
+ * 텍스트 저장값을 인풋 필드 입력값으로 변환하는 함수
+ */
 function textToInputValue(newListItemInput, newListItemText) {
   newListItemInput.value = newListItemText.textContent;
 
@@ -193,6 +196,9 @@ function textToInputValue(newListItemInput, newListItemText) {
   newListItemInput.classList.remove("todo-list--switch");
 }
 
+/**
+ * 인풋 필드 입력값을 텍스트로 변환하는 함수
+ */
 function inputValueToText(item, newListItemText, newListItemInput) {
   item.text = newListItemInput.value;
   newListItemText.textContent = newListItemInput.value;
