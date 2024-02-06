@@ -110,7 +110,7 @@ function updateClear() {
   }
 }
 
-function activateClearButton() {
+export function activateClearButton() {
   const clearButton = document.querySelector(".menu-clear");
   clearButton.addEventListener("click", () => {
     deleteAllCheck();

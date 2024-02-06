@@ -1,4 +1,5 @@
 import { controlOption, updateToolBar } from "./toolbar.js";
+import { updateAll } from "./utils.js";
 
 export let todoItems = [];
 
@@ -91,7 +92,11 @@ function handleDeleteItem(itemId, listItem) {
  */
 function handleCheckItem(item, listItem) {
   //2
-  item.isChecked = !item.isChecked;
+  if (item.isChecked === false) {
+    item.isChecked = true;
+  } else {
+    item.isChecked = false;
+  }
   //3
   const ITEM_CHECKED = "todo-list__item-checked";
   const checkButton = listItem.querySelector(".todo-list__item-check-button");
@@ -147,60 +152,62 @@ function makeList(item) {
   // });
   newListDeleteButton.addEventListener("click", () => {
     handleDeleteItem(item.id, newList);
-    updateList();
-    updateToolBar();
+    // updateList();
+    // updateToolBar();
+    updateAll();
   });
   newListCheckButton.addEventListener("click", () => {
     handleCheckItem(item, newList);
-    updateList();
-    updateToolBar();
+    // updateList();
+    // updateToolBar();
+    updateAll();
   });
 }
 
 /**
  * 이벤트를 통해 리스트를 추가하는 함수
  */
-export function makeNewListItem(id, text) {
-  const todoList = document.querySelector(".todo-list");
+// export function makeNewListItem(id, text) {
+//   const todoList = document.querySelector(".todo-list");
 
-  const newListItem = document.createElement("li");
-  newListItem.classList.add("todo-list__item");
+//   const newListItem = document.createElement("li");
+//   newListItem.classList.add("todo-list__item");
 
-  const newListItemLeft = document.createElement("div");
-  newListItemLeft.classList.add("todo-list__item-left");
+//   const newListItemLeft = document.createElement("div");
+//   newListItemLeft.classList.add("todo-list__item-left");
 
-  const newListItemCheckButton = document.createElement("button");
-  newListItemCheckButton.classList.add("todo-list__item-check-button");
+//   const newListItemCheckButton = document.createElement("button");
+//   newListItemCheckButton.classList.add("todo-list__item-check-button");
 
-  const newListItemText = document.createElement("div");
-  newListItemText.classList.add("todo-list__item-text");
+//   const newListItemText = document.createElement("div");
+//   newListItemText.classList.add("todo-list__item-text");
 
-  const newListItemDeleteButton = document.createElement("button");
-  newListItemDeleteButton.classList.add("todo-list__delete-button");
+//   const newListItemDeleteButton = document.createElement("button");
+//   newListItemDeleteButton.classList.add("todo-list__delete-button");
 
-  newListItemText.textContent = text;
-  newListItemCheckButton.textContent = "";
-  newListItemDeleteButton.textContent = "X";
-  newListItemLeft.append(newListItemCheckButton);
-  newListItemLeft.append(newListItemText);
-  newListItem.append(newListItemLeft);
-  newListItem.append(newListItemDeleteButton);
-  todoList.prepend(newListItem);
+//   newListItemText.textContent = text;
+//   newListItemCheckButton.textContent = "";
+//   newListItemDeleteButton.textContent = "X";
+//   newListItemLeft.append(newListItemCheckButton);
+//   newListItemLeft.append(newListItemText);
+//   newListItem.append(newListItemLeft);
+//   newListItem.append(newListItemDeleteButton);
+//   todoList.prepend(newListItem);
 
-  newListItemDeleteButton.addEventListener("click", () => {
-    handleDeleteItem(id, newListItem);
-    updateList();
-    updateToolBar();
-  });
-  newListItemCheckButton.addEventListener("click", () => {
-    handleCheckItem(
-      todoItems.filter((item) => item.id === id),
-      newListItem
-    );
-    updateList();
-    updateToolBar();
-  });
-}
+//   newListItemDeleteButton.addEventListener("click", () => {
+//     handleDeleteItem(id, newListItem);
+//     updateList();
+//     updateToolBar();
+//   });
+//   newListItemCheckButton.addEventListener("click", () => {
+//     handleCheckItem(
+//       todoItems.filter((item) => item.id === id),
+//       newListItem
+//     );
+//     updateList();
+//     updateToolBar();
+//   });
+// }
 
 // const itemButton = listItem.querySelector(".todo-list__item-check-button");
 // itemButton.addEventListener("click", () => {

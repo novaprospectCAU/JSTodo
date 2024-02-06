@@ -1,5 +1,6 @@
-import { updateToolBar } from "./toolbar.js";
-import { makeNewListItem, todoItems } from "./todo-list.js";
+import { todoItems } from "./todo-list.js";
+import { activateClearButton } from "./toolbar.js";
+// makeNewListItem
 import { updateAll } from "./utils.js";
 
 let highestId = 0;
@@ -29,11 +30,12 @@ export function newInput() {
       const string = inputCheck(inputSpace);
       if (string !== "") {
         pushItem(highestId, string);
-        makeNewListItem(highestId++, string);
         inputSpace.value = "";
+        highestId++;
+        updateAll();
       }
     }
-    updateAll();
+    // updateAll();
   });
 }
 
@@ -104,9 +106,9 @@ function updateCheckButtonVisual() {
 
 export function checkButton() {
   const checkButton = document.querySelector(".check-all");
-  toggleCheckButton();
+  updateCheckButton();
   checkButton.addEventListener("click", () => {
-    toggleCheckButton();
+    updateCheckButton();
     if (checkButtonStatus === 0) {
     } else {
       activateClearButton();

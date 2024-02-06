@@ -14,7 +14,18 @@ export function deleteAllCheck() {
 }
 
 export function updateAll() {
+  console.log("1");
+  console.log(todoItems);
+
   updateList();
+  console.log("2");
+  console.log(todoItems);
+
   updateCheckButton();
+  console.log("3");
+  console.log(todoItems);
+
   updateToolBar();
+  console.log("4");
+  console.log(todoItems);
 }
