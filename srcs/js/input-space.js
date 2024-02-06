@@ -107,9 +107,10 @@ export function checkAllButton() {
   updateCheckButton();
   checkButton.addEventListener("click", () => {
     updateCheckButton();
-    if (checkButtonStatus === 0) {
+    if (checkButtonStatus === "init") {
     } else {
       changeItemsViaCheckButton();
+      updateCheckButton();
       activateClearButton();
     }
     updateAll();
