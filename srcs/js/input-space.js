@@ -8,7 +8,7 @@ export let checkButtonStatus = "init";
 /**
  * 입력받은 문자열이 저장 가능한 형태인지 확인하는 함수
  */
-function inputCheck(input) {
+export function inputCheck(input) {
   return input.value.trim();
 }
 

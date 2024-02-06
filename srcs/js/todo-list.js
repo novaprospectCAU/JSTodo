@@ -1,3 +1,4 @@
+import { inputCheck } from "./input-space.js";
 import { controlOption, updateToolbar } from "./toolbar.js";
 import { updateAll } from "./utils.js";
 
@@ -169,16 +170,33 @@ function makeListItem(item) {
     // updateAll();
   });
   newListItem.addEventListener("dblclick", () => {
-    newListItemInput.value = newListItemText.textContent;
-
-    newListItemText.classList.add("todo-list--switch");
-    newListItemInput.classList.remove("todo-list--switch");
+    textToInputValue(newListItemInput, newListItemText);
   });
   newListItemInput.addEventListener("blur", () => {
-    newListItemText.textContent = newListItemInput.value;
-
-    newListItemInput.classList.add("todo-list--switch");
-    newListItemText.classList.remove("todo-list--switch");
-    updateAll();
+    if (inputCheck(newListItemInput)) {
+      inputValueToText(item, newListItemText, newListItemInput);
+      updateAll();
+    }
   });
+  newListItemInput.addEventListener("keyup", (e) => {
+    if (e.key === "Enter" && inputCheck(newListItemInput) !== "") {
+      inputValueToText(item, newListItemText, newListItemInput);
+      updateAll();
+    }
+  });
+}
+
+function textToInputValue(newListItemInput, newListItemText) {
+  newListItemInput.value = newListItemText.textContent;
+
+  newListItemText.classList.add("todo-list--switch");
+  newListItemInput.classList.remove("todo-list--switch");
+}
+
+function inputValueToText(item, newListItemText, newListItemInput) {
+  item.text = newListItemInput.value;
+  newListItemText.textContent = newListItemInput.value;
+
+  newListItemInput.classList.add("todo-list--switch");
+  newListItemText.classList.remove("todo-list--switch");
 }

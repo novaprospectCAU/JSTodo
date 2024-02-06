@@ -20,6 +20,7 @@
 
 .todo-list__item-left {
   display: flex;
+  justify-content: stretch;
   gap: 16px;
 }
 
@@ -42,13 +43,14 @@
 }
 
 .todo-list__item-input {
-  display: flex;
-
-  flex-wrap: 1;
   padding: 0;
   margin: 0;
   border: none;
   outline: none;
+
+  max-width: 100%;
+  min-width: 0;
+  width: 100%;
 
   color: #111;
   font-family: "Helvetica Neue", Courier, monospace;
