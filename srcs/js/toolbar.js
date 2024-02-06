@@ -57,8 +57,8 @@ export function clickOption() {
  * 툴바를 업데이트하는 메인 함수
  */
 export function updateToolBar() {
-  updateCounter();
   checkUpdateToobar();
+  updateCounter();
   updateOption();
   updateClear();
 }
