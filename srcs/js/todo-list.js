@@ -59,18 +59,18 @@ function addAllList() {
 
   if (controlOption === 0) {
     for (let item of todoItems) {
-      makeList(item);
+      makeListItem(item);
     }
   } else if (controlOption === 1) {
     for (let item of todoItems) {
       if (item.isChecked === false) {
-        makeList(item);
+        makeListItem(item);
       }
     }
   } else {
     for (let item of todoItems) {
       if (item.isChecked === true) {
-        makeList(item, handleDeleteItem);
+        makeListItem(item, handleDeleteItem);
       }
     }
   }
@@ -113,49 +113,72 @@ function handleCheckItem(item, listItem) {
 /**
  * 리스트 하나를 추가하는 함수(이미 있는 개체로 제작)
  */
-function makeList(item) {
+function makeListItem(item) {
   const todoList = document.querySelector(".todo-list");
 
-  const newList = document.createElement("li");
-  newList.classList.add("todo-list__item");
+  const newListItem = document.createElement("li");
+  newListItem.classList.add("todo-list__item");
 
-  const newListLeft = document.createElement("div");
-  newListLeft.classList.add("todo-list__item-left");
+  //좌측 공간(체크 버튼, 텍스트 필드, input필드)
+  const newListItemLeft = document.createElement("div");
+  newListItemLeft.classList.add("todo-list__item-left");
 
-  const newListCheckButton = document.createElement("button");
-  newListCheckButton.classList.add("todo-list__item-check-button");
+  //체크 버튼
+  const newListItemCheckButton = document.createElement("button");
+  newListItemCheckButton.classList.add("todo-list__item-check-button");
 
-  const newListText = document.createElement("div");
-  newListText.classList.add("todo-list__item-text");
+  //텍스트 필드
+  const newListItemText = document.createElement("div");
+  newListItemText.classList.add("todo-list__item-text");
 
-  const newListDeleteButton = document.createElement("button");
-  newListDeleteButton.classList.add("todo-list__delete-button");
+  //input필드(Default : off)
+  const newListItemInput = document.createElement("input");
+  newListItemInput.classList.add("todo-list__item-input");
+  newListItemInput.classList.add("todo-list--switch");
 
-  newListText.textContent = item.text;
+  //삭제 버튼
+  const newListItemDeleteButton = document.createElement("button");
+  newListItemDeleteButton.classList.add("todo-list__delete-button");
+
+  newListItemText.textContent = item.text;
   if (item.isChecked === true) {
-    newListText.classList.add("todo-list__item-checked");
-    newListCheckButton.textContent = "✔️";
+    newListItemText.classList.add("todo-list__item-checked");
+    newListItemCheckButton.textContent = "✔️";
   } else {
-    newListText.classList.remove("todo-list__item-checked");
-    newListCheckButton.textContent = "";
+    newListItemText.classList.remove("todo-list__item-checked");
+    newListItemCheckButton.textContent = "";
   }
 
-  newListLeft.append(newListCheckButton);
-  newListLeft.append(newListText);
-  newList.append(newListLeft);
-  newList.append(newListDeleteButton);
-  todoList.append(newList);
+  newListItemLeft.append(newListItemCheckButton);
+  newListItemLeft.append(newListItemText);
+  newListItemLeft.append(newListItemInput);
+  newListItem.append(newListItemLeft);
+  newListItem.append(newListItemDeleteButton);
+  todoList.append(newListItem);
 
-  newListDeleteButton.addEventListener("click", () => {
-    handleDeleteItem(item.id, newList);
+  newListItemDeleteButton.addEventListener("click", () => {
+    handleDeleteItem(item.id, newListItem);
     updateList();
     updateToolbar();
     // updateAll();
   });
-  newListCheckButton.addEventListener("click", () => {
-    handleCheckItem(item, newList);
+  newListItemCheckButton.addEventListener("click", () => {
+    handleCheckItem(item, newListItem);
     updateList();
     updateToolbar();
     // updateAll();
+  });
+  newListItem.addEventListener("dblclick", () => {
+    newListItemInput.value = newListItemText.textContent;
+
+    newListItemText.classList.add("todo-list--switch");
+    newListItemInput.classList.remove("todo-list--switch");
+  });
+  newListItemInput.addEventListener("blur", () => {
+    newListItemText.textContent = newListItemInput.value;
+
+    newListItemInput.classList.add("todo-list--switch");
+    newListItemText.classList.remove("todo-list--switch");
+    updateAll();
   });
 }

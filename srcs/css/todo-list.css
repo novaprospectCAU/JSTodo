@@ -41,6 +41,25 @@
   transition: color 0.4s;
 }
 
+.todo-list__item-input {
+  display: flex;
+
+  flex-wrap: 1;
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+
+  color: #111;
+  font-family: "Helvetica Neue", Courier, monospace;
+  font-size: 24px;
+  font-weight: 100;
+}
+
+.todo-list--switch {
+  display: none;
+}
+
 .todo-list__delete-button {
   border: none;
   flex-basis: 1;
