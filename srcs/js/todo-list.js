@@ -4,11 +4,9 @@ import { updateAll } from "./utils.js";
 
 export let todoItems = [];
 
-// let clearOption = 0;
-// let numberOfItems = 0;
-// let numberOfChecks = 0;
-// let currentOption = 0;
-// let item = {id: id, isChecked: false, text: text};
+export function deleteAllChecked() {
+  todoItems = todoItems.filter((item) => item.isChecked === false);
+}
 
 /**
  * todo 리스트를 업데이트하는 메인 함수
@@ -159,15 +157,15 @@ function makeListItem(item) {
 
   newListItemDeleteButton.addEventListener("click", () => {
     handleDeleteItem(item.id, newListItem);
-    updateList();
-    updateToolbar();
-    // updateAll();
+    // updateList();
+    // updateToolbar();
+    updateAll();
   });
   newListItemCheckButton.addEventListener("click", () => {
     handleCheckItem(item, newListItem);
-    updateList();
-    updateToolbar();
-    // updateAll();
+    // updateList();
+    // updateToolbar();
+    updateAll();
   });
   newListItem.addEventListener("dblclick", () => {
     textToInputValue(newListItemInput, newListItemText);

@@ -1,5 +1,9 @@
-import { deleteCheckedListItems, todoItems } from "./todo-list.js";
-import { deleteAllChecked, updateAll } from "./utils.js";
+import {
+  deleteCheckedListItems,
+  todoItems,
+  deleteAllChecked,
+} from "./todo-list.js";
+import { updateAll } from "./utils.js";
 
 export let controlOption = 0;
 export let clearOption = 0;
@@ -115,6 +119,7 @@ export function activateClearButton() {
   clearButton.addEventListener("click", () => {
     deleteAllChecked();
     deleteCheckedListItems();
+    updateAll();
   });
 }
 
