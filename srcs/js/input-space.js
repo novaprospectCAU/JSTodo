@@ -1,6 +1,5 @@
 import { todoItems } from "./todo-list.js";
 import { activateClearButton } from "./toolbar.js";
-// makeNewListItem
 import { updateAll } from "./utils.js";
 
 let highestId = 0;
