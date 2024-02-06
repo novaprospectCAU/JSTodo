@@ -146,20 +146,16 @@ function makeList(item) {
   newList.append(newListDeleteButton);
   todoList.append(newList);
 
-  // newListDeleteButton.addEventListener("click", () => {
-  //   newList.remove();
-
-  // });
   newListDeleteButton.addEventListener("click", () => {
     handleDeleteItem(item.id, newList);
-    // updateList();
-    // updateToolBar();
-    updateAll();
+    updateList();
+    updateToolbar();
+    // updateAll();
   });
   newListCheckButton.addEventListener("click", () => {
     handleCheckItem(item, newList);
-    // updateList();
-    // updateToolBar();
-    updateAll();
+    updateList();
+    updateToolbar();
+    // updateAll();
   });
 }

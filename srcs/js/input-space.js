@@ -43,7 +43,6 @@ export function newInput() {
  */
 export function updateCheckButton() {
   toggleCheckButton();
-  changeItemsViaCheckButton();
   updateCheckButtonVisual();
 }
 
@@ -66,7 +65,7 @@ function toggleCheckButton() {
  * 입력창의 체크 버튼의 누름에 따라 배열 내부를 조정하는 함수
  */
 function changeItemsViaCheckButton() {
-  if (checkButtonStatus === 0) {
+  if (checkButtonStatus === "init") {
     return;
   } else if (checkButtonStatus === "off") {
     for (let item of todoItems) {
@@ -103,18 +102,20 @@ function updateCheckButtonVisual() {
   }
 }
 
-export function checkButton() {
+export function checkAllButton() {
   const checkButton = document.querySelector(".check-all");
   updateCheckButton();
   checkButton.addEventListener("click", () => {
     updateCheckButton();
     if (checkButtonStatus === 0) {
     } else {
+      changeItemsViaCheckButton();
       activateClearButton();
     }
+    updateAll();
   });
 }
 
 newInput();
-checkButton();
+checkAllButton();
 updateAll();

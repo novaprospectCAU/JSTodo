@@ -103,10 +103,10 @@ function updateOption() {
 function updateClear() {
   const clearButton = document.querySelector(".menu-clear");
   const HIDE_CLEAR = "menu-clear--hiding";
-  if (todoItems.filter((item) => item.isChecked === false).length !== 0) {
-    clearButton.classList.add(HIDE_CLEAR);
-  } else {
+  if (todoItems.filter((item) => item.isChecked === true).length > 0) {
     clearButton.classList.remove(HIDE_CLEAR);
+  } else {
+    clearButton.classList.add(HIDE_CLEAR);
   }
 }
 
